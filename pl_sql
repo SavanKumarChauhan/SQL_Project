@@ -1,0 +1,218 @@
+PL/SQL Script
+
+
+-- DELETE PROCEDURE FOR COURSES TABLE
+
+create or replace PROCEDURE SPcoursesDELETE(
+err_code OUT INTEGER,
+S_COURSEID IN COURSES.COURSEID%type) AS
+
+BEGIN
+    DELETE FROM COURSES
+    WHERE COURSEID = S_COURSEID;
+    err_code := sql%rowcount;
+    COMMIT;
+    if err_code = 0
+        then 
+            dbms_output.put_line('Row is not deleted!');
+    elsif err_code = 1
+        then
+            dbms_output.put_line('Row is  deleted!');
+    else
+            dbms_output.put_line('Many rows are deleted!');
+            
+    end if;
+    
+    EXCEPTION
+        WHEN OTHERS
+            THEN err_code := -1; 
+            DBMS_OUTPUT.PUT_LINE('PRIMARY KEY EXIST/CANNOT INSERT');
+
+
+END;
+
+
+
+---INSERT PROCEDURE FOR COURSES TABLE---
+
+create or replace PROCEDURE SPcoursesINSERT(
+
+err_code OUT INTEGER,
+S_COURSEID IN COURSES.COURSEID%type,
+S_COURSENAME IN COURSES.COURSENAME%type,
+s_COURSETYPE IN COURSES.COURSETYPE%type,
+S_COURSEDURATION IN COURSES.COURSEDURATION%type,
+S_AD_ID IN COURSES.AD_ID%type)AS
+
+BEGIN
+    INSERT INTO COURSES(COURSEID,COURSENAME,COURSETYPE,COURSEDURATION,AD_ID)
+    VALUES (S_COURSEID,S_COURSENAME,s_COURSETYPE,S_COURSEDURATION,S_AD_ID);
+    
+    err_code := SQL%ROWCOUNT;
+    COMMIT;
+    if err_code = 0
+        then 
+            dbms_output.put_line('New Course could not be inserted!');
+   
+    else
+            dbms_output.put_line('Success: New Course has been inserted!');
+            
+    end if;
+     EXCEPTION
+        WHEN OTHERS
+            THEN err_code := -1; 
+            --DBMS_OUTPUT.PUT_LINE('PRIMARY KEY EXIST/CANNOT INSERT');
+
+END;
+
+
+---SELECT PROSEDURE FOR COURSES TABLE
+
+create or replace PROCEDURE SPcoursesSELECT(
+    err_code OUT INTEGER,
+    S_COURSEID  NUMBER,
+    S_COURSENAME OUT COURSES.COURSENAME%type,
+    S_COURSETYPE OUT COURSES.COURSETYPE%type,
+    S_COURSEDURATION OUT COURSES.COURSEDURATION%type,
+    S_AD_ID OUT COURSES.AD_ID%type) AS
+    
+BEGIN
+
+    SELECT COURSENAME,COURSETYPE,COURSEDURATION,AD_ID
+    INTO S_COURSENAME,S_COURSETYPE,S_COURSEDURATION,S_AD_ID
+    FROM COURSES
+    WHERE COURSEID = S_COURSEID;
+
+    err_code := sql%rowcount;
+     if err_code <= 0
+        then 
+            dbms_output.put_line('NO CUSTOMER FOUND');
+   
+    else
+           DBMS_OUTPUT.PUT_LINE('COURSE_NAME:' || S_COURSENAME);
+           DBMS_OUTPUT.PUT_LINE('COURSE_TYPE:' || S_COURSETYPE);
+           DBMS_OUTPUT.PUT_LINE('COURSE_DURATION:' || S_COURSEDURATION);
+           DBMS_OUTPUT.PUT_LINE('COURSE_ADMISTRATION_ID:' || S_AD_ID); 
+            
+    end if;
+    
+    
+    EXCEPTION
+        WHEN OTHERS
+            THEN err_code := -1; 
+            DBMS_OUTPUT.PUT_LINE('NO CUSTOMER FOUND');
+END;
+
+
+-- UPDATE PROCEDURE FOR COURSES TABLE 
+
+create or replace PROCEDURE SPcoursesUPDATE(
+
+err_code out INTEGER,
+S_COURSEID IN COURSES.COURSEID%type,
+S_COURSENAME IN COURSES.COURSENAME%type,
+S_COURSETYPE IN COURSES.COURSETYPE%type,
+S_COURSEDURATION IN COURSES.COURSEDURATION%type,
+S_AD_ID IN COURSES.AD_ID%type) AS
+
+BEGIN
+
+    UPDATE COURSES 
+    SET COURSENAME = S_COURSENAME,COURSETYPE = S_COURSETYPE,
+    COURSEDURATION = S_COURSEDURATION,AD_ID = S_AD_ID
+    WHERE COURSEID = S_COURSEID;
+    err_code := sql%rowcount;
+    COMMIT;
+    
+     EXCEPTION
+        WHEN OTHERS
+            THEN err_code := -1; 
+            DBMS_OUTPUT.PUT_LINE('PRIMARY KEY EXIST/CANNOT INSERT');
+
+END;
+
+
+
+
+
+
+--CREATE
+create or replace PROCEDURE create_administration_staff(err_count out integer,
+                                                      staff_id IN administration_staff.AD_ID%TYPE,
+                                                      a_fname IN administration_staff.firstname%TYPE,
+                                                      a_lname IN administration_staff.lastname%TYPE,
+                                                      a_email IN administration_staff.email%TYPE,
+                                                      a_duty IN administration_staff.duty%TYPE) AS
+
+BEGIN
+      insert into administration_staff (AD_ID,firstname, lastname, email, duty) 
+      values(staff_id,a_fname, a_lname,a_email,a_duty); 
+      
+      err_count:=sql%rowcount;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+  err_count:=-2;
+    DBMS_OUTPUT.PUT_LINE('No person found with ID ' || staff_id);
+  WHEN OTHERS THEN
+  err_count:=-1;
+    DBMS_OUTPUT.PUT_LINE('An error occurred while reading person with ID ' || staff_id || ': ' || SQLERRM);
+END create_administration_staff;
+
+--READ
+create or replace PROCEDURE read_administration_staff(err_count out integer,
+                                                      staff_id IN administration_staff.AD_ID%TYPE,
+                                                      a_fname OUT administration_staff.firstname%TYPE,
+                                                      a_lname OUT administration_staff.lastname%TYPE,
+                                                      a_email OUT administration_staff.email%TYPE,
+                                                      a_duty OUT administration_staff.duty%TYPE) AS
+
+BEGIN
+      SELECT firstname, lastname, email, duty
+      INTO a_fname, a_lname,a_email,a_duty
+      FROM administration_staff 
+      WHERE AD_ID = staff_id;
+      
+      DBMS_OUTPUT.PUT_LINE(a_fname);
+      DBMS_OUTPUT.PUT_LINE(a_lname);
+      DBMS_OUTPUT.PUT_LINE(a_email);
+      DBMS_OUTPUT.PUT_LINE(a_duty);
+      
+      err_count:=sql%rowcount;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+  err_count:=-2;
+    DBMS_OUTPUT.PUT_LINE('No person found with ID ' || staff_id);
+  WHEN OTHERS THEN
+  err_count:=-1;
+    DBMS_OUTPUT.PUT_LINE('An error occurred while reading person with ID ' || staff_id || ': ' || SQLERRM);
+END read_administration_staff;
+
+--UPDATE
+create or replace PROCEDURE update_administration_staff(err_code out integer,
+                                                        staff_id in  administration_staff.AD_ID%TYPE,
+                                                        v_fname administration_staff.firstname%TYPE,
+                                                        v_lname administration_staff.lastname%TYPE) AS
+  
+BEGIN
+ 
+    UPDATE ADMINISTRATION_STAFF SET FIRSTNAME = v_fname 
+    WHERE AD_ID = staff_id;
+    err_code :=sql%rowcount;
+    EXCEPTION
+    WHEN OTHERS THEN 
+        err_code:=-1; DBMS_OUTPUT.PUT_LINE('ERROR');
+END;
+
+--DELETE
+create or replace PROCEDURE delete_administration_staff (err_code out integer,
+                                                         staff_id in administration_staff.ad_id%TYPE) as
+begin
+     delete from ADMINISTRATION_STAFF
+     where AD_ID = staff_id;
+      
+    err_code:=sql%rowcount;
+exception
+    when others then 
+     err_code:= -1;
+     DBMS_OUTPUT.PUT_LINE('error');
+end;
