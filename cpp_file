@@ -1,0 +1,133 @@
+// This the cpp file, which is connected to the Oracle Databse mangement tool.
+
+
+
+
+
+
+#include <iostream>
+#include <occi.h>
+using oracle::occi::Environment;
+using oracle::occi::Connection;
+using namespace oracle::occi;
+using namespace std;
+struct Administration_Staff 
+{
+	int ad_id;
+	string firstname;
+	string lastname;
+	string email;
+	string duty;
+};
+
+struct Teachers 
+{
+	string teacherId;
+	string firstname;
+	string lastname;
+	string email;
+	string subject;
+};
+
+struct Courses 
+{
+	string courseId;
+	string courseName;
+	string courseType;
+	string courseDuration;
+	int ad_id;
+};
+
+struct Students 
+{
+	int stuId;
+	string stu_firstname;
+	string stu_lastname;
+	string stu_email;
+	string stu_phone;
+	string courseId;
+	string teacherID;
+	int ad_id;
+
+};
+
+
+int main(void) {
+	// OCCI Variables
+	Environment* env = nullptr;
+	Connection* conn = nullptr;
+	// User Variables
+	string str;
+	string usr = "dbs311_231ncc03";
+	string pass = "13166118"; 
+
+	
+
+
+	string srv = "myoracle12c.senecacollege.ca:1521/oracle12c";
+
+	try {
+		env = Environment::createEnvironment(Environment::DEFAULT);
+		conn = env->createConnection(usr, pass, srv);
+		cout << "Connection is Successful!" << endl;
+		Statement* stmt = conn->createStatement();
+		int num;
+		cout << "Press 1 to run First query :: " << endl;
+		cout << "Press 2 to run Second query:: " << endl;
+
+		cin >> num;
+		if (num == 1) {
+			ResultSet* rsss = stmt->executeQuery("select STUDENTS.STUID,COURSES.COURSENAME, COURSES.COURSEDURATION from STUDENTS join COURSES on STUDENTS.COURSEID = COURSES.COURSEID ");
+
+			cout << "StudentId              CourseName                  CourseDuration" << endl;
+
+			while (rsss->next()) {
+				int stuId = rsss->getInt(1);
+				string  courseName = rsss->getString(2);
+				string courseDuration = rsss->getString(3);
+
+				cout.width(20); cout << left << stuId << " ";
+				cout.width(30); cout << left << courseName << " ";
+				cout.width(30); cout << courseDuration << " " << endl;
+
+			}
+
+
+		}
+		else if (num == 2) {
+			ResultSet* rsss = stmt->executeQuery("select STUDENTS.STUID,STU_FIRSTNAME,STU_LASTNAME ,TEACHERS.TEACHERID, STUDENTS.COURSEID from STUDENTS inner join TEACHERS on STUDENTS.TEACHERID = TEACHERS.TEACHERID where TEACHERS.TEACHERID = '705'");
+
+			cout << endl;
+			cout << "StudentId    Student_Firstname     Student_Lastname          TeacherId               CourseId" << endl;
+
+			while (rsss->next()) {
+				int stuId = rsss->getInt(1);
+				string  stu_firstname = rsss->getString(2);
+				string stu_lastname = rsss->getString(3);
+				string teacherId = rsss->getString(4);
+				string courseId = rsss->getString(5);
+				cout.width(20); cout << left << stuId << " ";
+				cout.width(20); cout << left << stu_firstname << " ";
+				cout.width(20); cout << stu_lastname << " ";
+				cout.width(25); cout << teacherId << " ";
+				cout.width(20); cout << courseId << endl;
+
+			}
+
+		}
+
+		else
+		{
+			cout << "Please! Enter a valid Number" << endl;
+		}
+		conn->terminateStatement(stmt);
+		env->terminateConnection(conn);
+		Environment::terminateEnvironment(env);
+	}
+	catch (SQLException& sqlExcp) {
+		cout << sqlExcp.getErrorCode() << ": " << sqlExcp.getMessage();
+	}
+	return 0;
+}
+
+
