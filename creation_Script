@@ -1,0 +1,102 @@
+-- DBS Project Creation Script 
+
+
+
+Create Table Administration_Staff(
+ad_id int primary key,
+firstname varchar(20) not null,
+lastname varchar(20) not null,
+email varchar(20),
+duty varchar(20)
+);
+
+
+Create Table Maintenance_Staff (
+helper_id varchar(15) primary key,
+helper_name varchar(20) not null,
+phone varchar(20) not null,
+email varchar(20),
+helper_job varchar(30)
+);
+
+
+
+Create Table Teachers(
+teacherId varchar(30) primary key,
+firstname varchar(30) not null,
+lastname varchar(30) not null,
+email varchar(20),
+subject varchar(30) not null
+);
+
+
+Create Table Salaries(
+amount int primary key,
+teacherId varchar(30),
+helper_id varchar(15),
+ad_id int,
+CONSTRAINT 
+teacherId_fk FOREIGN KEY
+(teacherId) REFERENCES Teachers (teacherId),
+CONSTRAINT 
+helper_id_FK FOREIGN KEY
+(helper_id) REFERENCES Maintenance_Staff (helper_id),
+CONSTRAINT 
+ad_id_FK FOREIGN KEY
+(ad_id) REFERENCES Administration_Staff(ad_id )
+);
+
+
+
+Create Table Courses (
+courseId varchar(20) primary key,
+courseName varchar(30) not null,
+courseType varchar(20),
+courseDuration varchar(20) not null,
+ad_id int,
+CONSTRAINT
+ad_id_course_fk FOREIGN KEY
+(ad_id) REFERENCES Administration_Staff(ad_id )
+);
+
+
+
+Create Table Students(
+stuId int primary key,
+stu_firstname varchar(20) not null,
+stu_lastname varchar(20) not null,
+stu_email varchar(20),
+stu_phone varchar(20),
+courseId varchar(20),
+teacherID varchar(30),
+ad_id int,
+CONSTRAINT 
+stu_courseId_fk FOREIGN KEY
+(courseId) REFERENCES Courses(courseId),
+CONSTRAINT 
+stu_teacherId_fk FOREIGN KEY
+(teacherId) REFERENCES Teachers(teacherId),
+CONSTRAINT 
+stu_ad_id_fk FOREIGN KEY
+(ad_id) REFERENCES Administration_Staff(ad_id)
+);
+
+
+Create Table Grades (
+grade varchar(10) primary key,
+stuId int,
+CONSTRAINT
+stuNo_fk FOREIGN KEY
+(stuId) REFERENCES Students(stuId)
+);
+
+
+Create Table Subjects(
+sub_Id varchar(20) primary key,
+subName varchar(30) not null,
+section varchar(10),
+stuId int,
+CONSTRAINT
+stuId_sub_fk FOREIGN KEY
+(stuId) REFERENCES Students(stuId)
+);
