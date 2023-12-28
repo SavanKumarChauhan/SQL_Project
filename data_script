@@ -1,0 +1,317 @@
+-- DBS Project Data Script 
+
+
+
+
+INSERT INTO ADMINISTRATION_STAFF
+VALUES (200, 'Ashish', 'Chanchlani','achan123','Coordinator');
+
+INSERT INTO ADMINISTRATION_STAFF
+VALUES (201, 'Ramesh', 'Shah','ram111','Coordinator');
+
+INSERT INTO ADMINISTRATION_STAFF
+VALUES (202, 'Suresh', 'Pandey','Surpandey55','Coordinator');
+
+INSERT INTO ADMINISTRATION_STAFF
+VALUES (203, 'Bhavesh', 'Joshi','Bhavesh26','Coordinator');
+
+INSERT INTO ADMINISTRATION_STAFF
+VALUES (204, 'Nimesh', 'Dave','dave208','Coordinator');
+
+INSERT INTO ADMINISTRATION_STAFF
+VALUES (205, 'Umesh', 'Agrawal','umesh222','Coordinator');
+
+INSERT INTO ADMINISTRATION_STAFF
+VALUES (206, 'Raman', 'Patel','ram67','Coordinator');
+
+INSERT INTO ADMINISTRATION_STAFF
+VALUES (207, 'Raghu', 'Shah','raghushah45','Coordinator');
+
+INSERT INTO ADMINISTRATION_STAFF
+VALUES (208, 'Rohit', 'Vyas','vyasrohit89','Coordinator');
+
+INSERT INTO ADMINISTRATION_STAFF
+VALUES (209, 'Karan', 'Patel','karan555','Coordinator');
+
+
+
+
+
+INSERT INTO MAINTENANCE_STAFF
+VALUES (400, 'Rohan', 'Jha','ron44','Electrician');
+
+INSERT INTO MAINTENANCE_STAFF
+VALUES (401, 'Kirti', 'Gandhi','kgandhi22','Plumber');
+
+INSERT INTO MAINTENANCE_STAFF
+VALUES (402, 'Prisha', 'Modi','modi18','Carpenter');
+
+INSERT INTO MAINTENANCE_STAFF
+VALUES (403, 'Danish', 'Suthar','dan4','Gardener');
+
+INSERT INTO MAINTENANCE_STAFF
+VALUES (404, 'Yuvraj', 'Zala','zala33','Cleaner');
+
+INSERT INTO MAINTENANCE_STAFF
+VALUES (405, 'Manav', 'Patel','manav28','Pest Control');
+
+INSERT INTO MAINTENANCE_STAFF
+VALUES (406, 'Rishi', 'Patel','rishi99','Painter');
+
+INSERT INTO MAINTENANCE_STAFF
+VALUES (407, 'Dhruv', 'Ghadhvi','dhruvgadhvi','Mechanic');
+
+INSERT INTO MAINTENANCE_STAFF
+VALUES (408, 'Dylan', 'Thakkar','deelan44','Janitor');
+
+INSERT INTO MAINTENANCE_STAFF
+VALUES (409, 'Parth', 'Raval','raval55','IT Support');
+
+
+
+
+
+
+INSERT INTO Teachers
+VALUES (700, 'Smit', 'Shah','sm5566','Maths');
+
+INSERT INTO Teachers
+VALUES (701, 'Jeel', 'Patel','jeel55','Science');
+
+INSERT INTO Teachers
+VALUES (702, 'Krishna', 'Rao','krishna45','Arts');
+
+INSERT INTO Teachers
+VALUES (703, 'Shiv', 'Oberoi','oberoi67','Social Studies');
+
+INSERT INTO Teachers
+VALUES (704, 'Vraj', 'Sighania','singhania88','English');
+
+INSERT INTO Teachers
+VALUES (705, 'Anshu', 'Nanda','nandanshu11','Spanish');
+
+INSERT INTO Teachers
+VALUES (706, 'Hitarth', 'Malhotra','hit54','French');
+
+INSERT INTO Teachers
+VALUES (707, 'Krish', 'Kapoor','krish3','History');
+
+INSERT INTO Teachers
+VALUES (708, 'Shaan', 'Roy','shann55','Economics');
+
+INSERT INTO Teachers
+VALUES (709, 'Tilak', 'Kawa','tilak00','Geography');
+
+
+
+
+INSERT INTO Salaries
+VALUES (50000, '700', NULL, NULL);
+
+INSERT INTO Salaries
+VALUES (55000, '701', NULL, NULL);
+
+INSERT INTO Salaries
+VALUES (60000, '702', NULL, NULL);
+
+INSERT INTO Salaries
+VALUES (65000, '703', NULL, NULL);
+
+INSERT INTO Salaries
+VALUES (70000, '704', NULL, NULL);
+
+INSERT INTO Salaries
+VALUES (75000, '705', NULL, NULL);
+
+INSERT INTO Salaries
+VALUES (80000, '706', NULL, NULL);
+
+INSERT INTO Salaries
+VALUES (85000, '707', NULL, NULL);
+
+INSERT INTO Salaries
+VALUES (90000, '708', NULL, NULL);
+
+INSERT INTO Salaries
+VALUES (95000, '709', NULL, NULL);
+
+INSERT INTO Salaries
+VALUES (10000, NULL, '400', NULL);
+
+INSERT INTO Salaries
+VALUES (8000, NULL, '401', NULL);
+
+INSERT INTO Salaries
+VALUES (15000, NULL, '402', NULL);
+
+INSERT INTO Salaries
+VALUES (13500, NULL, '403', NULL);
+
+INSERT INTO Salaries
+VALUES (15550, NULL, '404', NULL);
+
+INSERT INTO Salaries
+VALUES (6000, NULL, '405', NULL);
+
+INSERT INTO Salaries
+VALUES (8500, NULL, '406', NULL);
+
+INSERT INTO Salaries
+VALUES (4500, NULL, '407', NULL);
+
+INSERT INTO Salaries
+VALUES (3000, NULL, '408', NULL);
+
+INSERT INTO Salaries
+VALUES (5000, NULL, '409', NULL);
+
+INSERT INTO Salaries
+VALUES (35000, NULL, NULL, '200');
+
+INSERT INTO Salaries
+VALUES (33000, NULL, NULL, '201');
+
+INSERT INTO Salaries
+VALUES (22000, NULL, NULL, '202');
+
+INSERT INTO Salaries
+VALUES (20000, NULL, NULL, '203');
+
+INSERT INTO Salaries
+VALUES (15500, NULL, NULL, '204');
+
+INSERT INTO Salaries
+VALUES (28000, NULL, NULL, '205');
+
+INSERT INTO Salaries
+VALUES (28500, NULL, NULL, '206');
+
+INSERT INTO Salaries
+VALUES (26000, NULL, NULL, '207');
+
+INSERT INTO Salaries
+VALUES (23000, NULL, NULL, '208');
+
+INSERT INTO Salaries
+VALUES (26500, NULL, NULL, '209');
+select * from Salaries;
+
+
+
+
+
+INSERT INTO Courses
+VALUES (101, 'Computer Science', 'Core', '12 weeks', 200);
+
+INSERT INTO Courses
+VALUES (102, 'Calculus II', 'Core', '16 weeks', 202);
+
+INSERT INTO Courses
+VALUES (103, 'General Physics I', 'Core', '14 weeks', 203);
+
+INSERT INTO Courses
+VALUES (104, 'English Composition I', 'Core', '15 weeks', 201);
+
+INSERT INTO Courses
+VALUES (105, 'World History II', 'Elective', '10 weeks', 207);
+
+INSERT INTO Courses
+VALUES (106, 'Introduction to Art', 'Elective', '8 weeks', 206);
+
+INSERT INTO Courses
+VALUES (107, 'Introduction to Music', 'Elective', '8 weeks', 205);
+
+INSERT INTO Courses
+VALUES (108, 'Microeconomics', 'Core', '12 weeks', 208);
+
+INSERT INTO Courses
+VALUES (109, 'Environmental Science', 'Elective', '10 weeks', 204);
+
+INSERT INTO Courses
+VALUES (110, 'Introduction to Psychology', 'Core', '14 weeks', 203);
+
+
+
+
+
+INSERT INTO Students
+VALUES (1001, 'Helly', 'Doe', 'helly77', '555-1234', 102, 700, 200);
+
+INSERT INTO Students
+VALUES (1002, 'Krishi', 'Doe', 'Krish55', '555-5678', 103, 701, 201);
+
+INSERT INTO Students
+VALUES (1003, 'Romil', 'Smith', 'romy3191', '555-2468', 104, 702, 202);
+
+INSERT INTO Students
+VALUES (1004, 'Ankit', 'Jones', 'ankitpatel', '555-3698', 105, 703, 203);
+
+INSERT INTO Students
+VALUES (1005, 'Kunal', 'Lee', 'kunal67', '555-7890', 106, 704, 204);
+
+INSERT INTO Students
+VALUES (1006, 'Krina', 'Garcia', 'Garcia666', '555-2345', 107, 705, 205);
+
+INSERT INTO Students
+VALUES (1007, 'Arjun', 'Johnson', 'arjun22', '555-4567', 108, 706, 206);
+
+INSERT INTO Students
+VALUES (1008, 'Lakshman', 'Davis', 'laksh67', '555-1357', 109, 707, 207);
+
+INSERT INTO Students
+VALUES (1009, 'Ram', 'Brown', 'rramm999', '555-2468', 110, 708, 208);
+
+INSERT INTO Students
+VALUES (1010, 'Meera', 'Martinez', 'smeera45', '555-6789', 102, 709, 209);
+
+
+
+
+
+INSERT INTO Grades (grade, stuId)
+VALUES ('A+', 1001);
+ INSERT INTO Grades (grade, stuId)
+VALUES    ('A', 1002);
+INSERT INTO Grades (grade, stuId)
+VALUES     ('A-', 1003);
+INSERT INTO Grades (grade, stuId)
+VALUES     ('B+', 1004);
+ INSERT INTO Grades (grade, stuId)
+VALUES    ('B', 1005);
+INSERT INTO Grades (grade, stuId)
+VALUES     ('B-', 1006);
+INSERT INTO Grades (grade, stuId)
+VALUES     ('C+', 1007);
+ INSERT INTO Grades (grade, stuId)
+VALUES    ('C', 1008);
+ INSERT INTO Grades (grade, stuId)
+VALUES    ('C-', 1009);
+ INSERT INTO Grades (grade, stuId)
+VALUES    ('D', 1010);
+
+
+
+
+
+INSERT INTO Subjects (sub_Id, subName, section, stuId) 
+VALUES (701, 'English', 'A', 1001);
+  INSERT INTO Subjects (sub_Id, subName, section, stuId) 
+VALUES      (702, 'Mathematics', 'B', 1002);
+  INSERT INTO Subjects (sub_Id, subName, section, stuId) 
+VALUES      (703, 'Physics', 'A', 1003);
+ INSERT INTO Subjects (sub_Id, subName, section, stuId) 
+VALUES       (704, 'Chemistry', 'B', 1004);
+ INSERT INTO Subjects (sub_Id, subName, section, stuId) 
+VALUES       (705, 'Biology', 'A', 1005);
+ INSERT INTO Subjects (sub_Id, subName, section, stuId) 
+VALUES       (706, 'History', 'B', 1006);
+  INSERT INTO Subjects (sub_Id, subName, section, stuId) 
+VALUES      (707, 'Geography', 'A', 1007);
+   INSERT INTO Subjects (sub_Id, subName, section, stuId) 
+VALUES     (708, 'Computer Science', 'B', 1008);
+   INSERT INTO Subjects (sub_Id, subName, section, stuId) 
+VALUES     (709, 'Economics', 'A', 1009);
+   INSERT INTO Subjects (sub_Id, subName, section, stuId) 
+VALUES     (710, 'Business Studies', 'B', 1010);
+
+
